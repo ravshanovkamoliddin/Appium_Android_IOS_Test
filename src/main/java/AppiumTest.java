@@ -11,6 +11,9 @@ import java.net.URL;
 
 public class AppiumTest {
 
+    public AndroidDriver driver;
+    public AppiumDriverLocalService service;
+
     @Test
     public void AppiumAndroidTest() throws MalformedURLException {
 
@@ -25,11 +28,14 @@ public class AppiumTest {
         //SKEAONE6PV9LFYJN
         // Options for the driver
         UiAutomator2Options options = new UiAutomator2Options();
-        options.setDeviceName("SKEAONE6PV9LFYJN");
+        options.setDeviceName("SKEAONE6PV9LFYJN"); // Qurilma ID
         options.setApp("src/main/resources/ApiDemos-debug.apk");
+        options.setPlatformName("Android");
+        options.setAutomationName("UIAutomator2");
 
-        // Driver initialization
-        AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), options);
+
+        // Driver url
+        driver = new AndroidDriver( new URL ("http://127.0.0.1:4723"), options);
 
         // Quit the driver
         driver.quit();
