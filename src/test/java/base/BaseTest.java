@@ -15,29 +15,36 @@ import java.time.Duration;
 public class BaseTest {
 
     public AndroidDriver driver;
-    public AppiumDriverLocalService service;
+    //public AppiumDriverLocalService service;
 
     @BeforeClass
     public void ConfigureAppium () throws MalformedURLException {
 
-        // Correct Appium path
+        /* //Correct Appium path local appium server
         service = new AppiumServiceBuilder()
                 .withAppiumJS(new File("C:/Users/kamoliddin/AppData/Roaming/npm/node_modules/appium/build/lib/main.js"))
                 .withIPAddress("127.0.0.1")
                 .usingPort(4723)
                 .build();
-        service.start();
+        service.start(); */
 
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("SKEAONE6PV9LFYJN"); // Qurilma ID
-        options.setApp("src/main/resources/ApiDemos-debug.apk");
+        //options.setApp("src/main/resources/ApiDemos-debug.apk");
         options.setPlatformName("Android");
         options.setAutomationName("UIAutomator2");
+        options.setAppPackage("io.appium.android.apis");
+        options.setAppActivity(".ApiDemos");
 
 
-        // Driver url
+        /* Driver url local
         driver = new AndroidDriver( new URL("http://127.0.0.1:4723"), options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); */
+
+        // Driver URL Remote
+        String remoteAppiumServerURL = "http://127.0.0.1:4723/wd/hub";
+        driver = new AndroidDriver(new URL(remoteAppiumServerURL), options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
     }
@@ -45,6 +52,6 @@ public class BaseTest {
     @AfterClass
     public void tearDown () {
         driver.quit();
-        service.stop();
+        //service.stop();
     }
 }
