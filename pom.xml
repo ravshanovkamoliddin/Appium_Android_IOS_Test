@@ -55,7 +55,7 @@
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>
-            <version>9.2.3</version>
+            <version>9.3.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -66,5 +66,12 @@
         </dependency>
 
     </dependencies>
+    <repositories>
+        <repository>
+            <id>maven_central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+    </repositories>
 
 </project>

@@ -1,6 +1,7 @@
 package base;
 
 import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.JavascriptExecutor;
@@ -57,8 +58,27 @@ public class BaseTest {
                         "duration",2000));
     }
 
+    public void ScrollEndAction() {
 
-    @AfterClass
+        boolean canScrollMore;
+        do {
+            //noinspection DataFlowIssue
+            canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
+                    ImmutableMap.<String, Object>builder()
+                            .put("left", 100)
+                            .put("top", 100)
+                            .put("width", 200)
+                            .put("height", 200)
+                            .put("direction", "down")
+                            .put("percent", 3.0)
+                            .build()
+            );
+        } while (canScrollMore);
+
+    }
+
+
+        @AfterClass
     public void tearDown () {
         driver.quit();
         //service.stop();
