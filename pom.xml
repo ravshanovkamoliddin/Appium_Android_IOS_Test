@@ -21,10 +21,11 @@
                 <version>7.10.2</version>
                 <scope>test</scope>
             </dependency>
+
             <dependency>
                 <groupId>io.appium</groupId>
                 <artifactId>java-client</artifactId>
-                <version>9.2.3</version>
+                <version>9.3.0</version>
                 <scope>test</scope>
             </dependency>
 
@@ -46,26 +47,28 @@
 
             </dependency>
 
-            <dependency>
-                <groupId>io.appium</groupId>
-                <artifactId>java-client</artifactId>
-                <version>9.2.2</version>
-                <scope>test</scope>
-            </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.jenkins.plugins</groupId>-->
+<!--            <artifactId>popper2-api</artifactId>-->
+<!--            <version>[latest version]</version>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
         <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>9.3.0</version>
-            <scope>compile</scope>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>5.1.2</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.10.2</version>
-            <scope>compile</scope>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.27.0</version>
         </dependency>
 
     </dependencies>
+
     <repositories>
         <repository>
             <id>maven_central</id>
