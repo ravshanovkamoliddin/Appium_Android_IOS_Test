@@ -16,6 +16,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class BaseTest {
 
@@ -110,6 +111,11 @@ public class BaseTest {
                 "direction", "left",
                 "percent", 0.75
         ));
+    }
+
+    public Double getFormattedAmount(String amount) {
+        AtomicReference<Double> price = new AtomicReference<>(Double.parseDouble(amount.substring(1)));
+        return price.get();
     }
 
     @AfterClass
