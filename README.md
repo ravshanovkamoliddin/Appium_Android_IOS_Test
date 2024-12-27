@@ -73,5 +73,5 @@ This project was created by Your Name. If you'd like to contribute, feel free to
 
 📧 Contact
 For any questions or suggestions, feel free to reach out:
-📩 rkamoliddin1991@gmail.com
+📩 https://www.linkedin.com/in/ravshanovkamoliddin
 
