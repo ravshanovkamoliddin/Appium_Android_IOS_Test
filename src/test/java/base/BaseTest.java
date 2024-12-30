@@ -35,20 +35,7 @@ public class BaseTest {
         service.start();
 
 
-        UiAutomator2Options options = new UiAutomator2Options();
-        //Real devices
-        //options.setDeviceName("SKEAONE6PV9LFYJN"); // Qurilma ID
-
-        //emulator
-        options.setDeviceName("Emulator");
-
-        //Demos app
-        //options.setApp("src/main/resources/ApiDemos-debug.apk");
-
-        //eCommerce app
-        options.setApp("src/main/resources/General-Store.apk");
-        options.setPlatformName("Android");
-        options.setAutomationName("UIAutomator2");
+        UiAutomator2Options options = getUiAutomator2Options();
 
         //eCommerce apps package and Activity
         //options.setAppPackage("com.androidsample.generalstore");
@@ -78,6 +65,27 @@ public class BaseTest {
         driver = new AndroidDriver(new URL(remoteAppiumServerURL), options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); */
 
+    }
+
+    private static UiAutomator2Options getUiAutomator2Options() {
+        UiAutomator2Options options = new UiAutomator2Options();
+        //Real devices
+        options.setDeviceName("SKEAONE6PV9LFYJN"); // Qurilma ID
+
+        //chrome driver
+        options.setChromedriverExecutable("C:/chromedriver/chrome-win64");
+
+        //emulator
+        //options.setDeviceName("Emulator");
+
+        //Demos app
+        //options.setApp("src/main/resources/ApiDemos-debug.apk");
+
+        //eCommerce app
+        options.setApp("src/main/resources/General-Store.apk");
+        options.setPlatformName("Android");
+        options.setAutomationName("UIAutomator2");
+        return options;
     }
 
     public void LongPressAction(WebElement ele) {
@@ -114,8 +122,8 @@ public class BaseTest {
     }
 
     public Double getFormattedAmount(String amount) {
-        AtomicReference<Double> price = new AtomicReference<>(Double.parseDouble(amount.substring(1)));
-        return price.get();
+        Double productPrices = Double.parseDouble(amount.substring(1));
+        return productPrices;
     }
 
     @AfterClass
