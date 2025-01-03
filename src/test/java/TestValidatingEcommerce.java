@@ -1,6 +1,9 @@
 import base.BaseTest;
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,13 +13,14 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
 
 
 public class TestValidatingEcommerce extends BaseTest {
 
 
     @Test
-    public void FillFrom() throws MalformedURLException {
+    public void FillFrom() throws MalformedURLException, InterruptedException {
 
         // Input name and select gender
         driver.findElement(By.id("com.androidsample.generalstore:id/nameField")).sendKeys("Kamoliddin");
@@ -59,6 +63,36 @@ public class TestValidatingEcommerce extends BaseTest {
         // Print console Total sum
         System.out.println("Calculated Total: " + totalSum);
         System.out.println("Displayed Total: " + displayedTotal);
+        Thread.sleep(6000);
+
+//        Set<String> contexts = driver.getContextHandles();
+//        for (String contextName : contexts)
+//        {
+//            System.out.println(contextName);
+//        }
+//
+//        driver.context("WEBVIEW_com.androidsample.generalstore");
+//        driver.findElement(By.name("q")).sendKeys("ravshanovkamoliddin");
+//        driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+//        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+//        driver.context("NATIVE_APP");
+
+        Set<String> contexts = driver.getContextHandles();
+        for (String contextName : contexts) {
+            System.out.println("Available context: " + contextName);
+        }
+
+        if (contexts.contains("WEBVIEW_com.androidsample.generalstore")) {
+            driver.context("WEBVIEW_com.androidsample.generalstore");
+            driver.findElement(By.name("q")).sendKeys("ravshanovkamoliddin");
+            driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
+            driver.pressKey(new KeyEvent(AndroidKey.BACK));
+            driver.context("NATIVE_APP");
+        } else {
+            System.out.println("WEBVIEW context not found. Please check WebView configuration.");
+        }
+
+
     }
 
 }

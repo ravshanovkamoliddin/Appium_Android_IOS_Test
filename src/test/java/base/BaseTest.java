@@ -67,7 +67,7 @@ public class BaseTest {
 
     }
 
-    private static UiAutomator2Options getUiAutomator2Options() {
+    protected static UiAutomator2Options getUiAutomator2Options() {
         UiAutomator2Options options = new UiAutomator2Options();
         //Real devices
         options.setDeviceName("SKEAONE6PV9LFYJN"); // Qurilma ID
