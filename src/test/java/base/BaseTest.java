@@ -13,10 +13,15 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Properties;
 import java.util.concurrent.atomic.AtomicReference;
+
+import static com.sun.tools.doclint.Entity.prop;
 
 public class BaseTest {
 
@@ -24,7 +29,14 @@ public class BaseTest {
     public AppiumDriverLocalService service;
 
     @BeforeClass
-    public void ConfigureAppium () throws MalformedURLException {
+    public void ConfigureAppium () throws IOException {
+
+        Properties prop = new Properties();
+        FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "src/test/java/resources/data.properties");
+
+        prop.load(fis);
+        String ipAddress = prop.getProperty("ipAddress");
+        String port = prop.getProperty("port");
 
         //Correct Appium path local appium server
        service = new AppiumServiceBuilder()
@@ -36,6 +48,8 @@ public class BaseTest {
 
 
         UiAutomator2Options options = getUiAutomator2Options();
+
+        options.setDeviceName(prop.getProperty("AndroidDeviceName"));
 
         //eCommerce apps package and Activity
         //options.setAppPackage("com.androidsample.generalstore");
@@ -70,7 +84,8 @@ public class BaseTest {
     protected static UiAutomator2Options getUiAutomator2Options() {
         UiAutomator2Options options = new UiAutomator2Options();
         //Real devices
-        options.setDeviceName("SKEAONE6PV9LFYJN"); // Qurilma ID
+       // options.setDeviceName("SKEAONE6PV9LFYJN"); // Real devices ID
+
 
         //chrome driver
         options.setChromedriverExecutable("C:/chromedriver/chrome-win64");
