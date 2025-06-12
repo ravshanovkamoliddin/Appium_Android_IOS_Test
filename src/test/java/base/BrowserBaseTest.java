@@ -26,13 +26,9 @@ public class BrowserBaseTest {
     @BeforeClass
     public void ConfigureAppium () throws MalformedURLException {
 
-        //Correct Appium path local appium server
-        service = new AppiumServiceBuilder()
-                .withAppiumJS(new File("C:/Users/kamoliddin/AppData/Roaming/npm/node_modules/appium/build/lib/main.js"))
-                .withIPAddress("127.0.0.1")
-                .usingPort(4723)
-                .build();
-        service.start();
+       // Driver URL Remote
+//        System.out.println("Capabilities: " + options.toJson());
+//        System.out.println("Appium server URL: " + "http://127.0.0.1:4723/wd/hub");
 
 
         UiAutomator2Options options = new UiAutomator2Options();
@@ -46,10 +42,6 @@ public class BrowserBaseTest {
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-
-        // Driver URL Remote
-//        System.out.println("Capabilities: " + options.toJson());
-//        System.out.println("Appium server URL: " + "http://127.0.0.1:4723/wd/hub");
 
     }
 
