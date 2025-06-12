@@ -26,15 +26,6 @@ public class BaseTest {
     @BeforeClass
     public void ConfigureAppium () throws MalformedURLException {
 
-        //Correct Appium path local appium server
-       service = new AppiumServiceBuilder()
-                .withAppiumJS(new File("C:/Users/kamoliddin/AppData/Roaming/npm/node_modules/appium/build/lib/main.js"))
-                .withIPAddress("127.0.0.1")
-                .usingPort(4723)
-                .build();
-        service.start();
-
-
         UiAutomator2Options options = getUiAutomator2Options();
 
         //eCommerce apps package and Activity
